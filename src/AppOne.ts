@@ -53,11 +53,16 @@ var createScene = function (engine: BABYLON.Engine, canvas: HTMLCanvasElement) {
   redMaterial.alpha = 1
   redMaterial.diffuseColor = new BABYLON.Color3(1.0, 0, 0)
 
+  var greenMaterial = new BABYLON.StandardMaterial('Green Material', scene)
+  greenMaterial.alpha = 1
+  greenMaterial.diffuseColor = new BABYLON.Color3(0, 1, 0)
+
   var redBox = BABYLON.MeshBuilder.CreateBox(
     'red-box',
     {
       width: 3,
-      height: 3
+      height: 3,
+      depth: 3
     },
     scene
   )
@@ -65,11 +70,22 @@ var createScene = function (engine: BABYLON.Engine, canvas: HTMLCanvasElement) {
   var blueBox = BABYLON.MeshBuilder.CreateBox(
     'blue-box',
     {
-      width: 6,
-      height: 3
+      width: 3,
+      height: 3,
+      depth: 3
     },
     scene
   )
   blueBox.material = blueMaterial
+  var greenBox = BABYLON.MeshBuilder.CreateBox(
+    'blue-box',
+    {
+      width: 3,
+      height: 3,
+      depth: 3
+    },
+    scene
+  )
+  greenBox.material = greenMaterial
   return scene
 }
