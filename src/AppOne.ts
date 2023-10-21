@@ -28,50 +28,48 @@ export class AppOne {
 }
 
 var createScene = function (engine: BABYLON.Engine, canvas: HTMLCanvasElement) {
-  // this is the default code from the playground:
-
-  // This creates a basic Babylon Scene object (non-mesh)
   var scene = new BABYLON.Scene(engine)
-
-  // This creates and positions a free camera (non-mesh)
   var camera = new BABYLON.FreeCamera(
     'camera1',
     new BABYLON.Vector3(0, 5, -10),
     scene
   )
-
-  // This targets the camera to scene origin
   camera.setTarget(BABYLON.Vector3.Zero())
-
-  // This attaches the camera to the canvas
   camera.attachControl(canvas, true)
 
-  // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
   var light = new BABYLON.HemisphericLight(
     'light',
     new BABYLON.Vector3(0, 1, 0),
     scene
   )
 
-  // Default intensity is 1. Let's dim the light a small amount
   light.intensity = 0.7
 
-  // Our built-in 'sphere' shape.
-  var sphere = BABYLON.MeshBuilder.CreateBox('red-box', {
-    size: 1,
-    width: 3,
-    height: 3
-  })
+  var blueMaterial = new BABYLON.StandardMaterial('Blue Material', scene)
+  blueMaterial.alpha = 1
+  blueMaterial.diffuseColor = new BABYLON.Color3(0, 0, 1)
 
-  // Move the sphere upward 1/2 its height
-  sphere.position.y = 1
+  var redMaterial = new BABYLON.StandardMaterial('Red Material', scene)
+  redMaterial.alpha = 1
+  redMaterial.diffuseColor = new BABYLON.Color3(1.0, 0, 0)
 
-  // Our built-in 'ground' shape.
-  var ground = BABYLON.MeshBuilder.CreateGround(
-    'ground',
-    { width: 6, height: 6 },
+  var redBox = BABYLON.MeshBuilder.CreateBox(
+    'red-box',
+    {
+      width: 3,
+      height: 3
+    },
     scene
   )
-
+  redBox.material = redMaterial
+  var blueBox = BABYLON.MeshBuilder.CreateBox(
+    'blue-box',
+    {
+      width: 6,
+      height: 3
+    },
+    scene
+  )
+  blueBox.material = blueMaterial
   return scene
 }
