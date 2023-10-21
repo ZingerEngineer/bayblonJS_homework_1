@@ -45,31 +45,85 @@ var createScene = function (engine: BABYLON.Engine, canvas: HTMLCanvasElement) {
 
   light.intensity = 0.7
 
-  var blueMaterial = new BABYLON.StandardMaterial('Blue Material', scene)
-  blueMaterial.alpha = 1
-  blueMaterial.diffuseColor = new BABYLON.Color3(0, 0, 1)
+  var yellowMaterial = new BABYLON.StandardMaterial('Yellow Material', scene)
+  yellowMaterial.alpha = 1
+  yellowMaterial.diffuseColor = new BABYLON.Color3(1, 1, 0)
 
   var redMaterial = new BABYLON.StandardMaterial('Red Material', scene)
   redMaterial.alpha = 1
   redMaterial.diffuseColor = new BABYLON.Color3(1.0, 0, 0)
 
-  var redBox = BABYLON.MeshBuilder.CreateBox(
-    'red-box',
+  var blackMaterial = new BABYLON.StandardMaterial('Red Material', scene)
+  blackMaterial.alpha = 1
+  blackMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0)
+
+  var planeMaterial = new BABYLON.StandardMaterial('Plane Material', scene)
+  planeMaterial.alpha = 1
+  planeMaterial.diffuseColor = new BABYLON.Color3(1, 1, 1)
+
+  var redCone = BABYLON.MeshBuilder.CreateCylinder(
+    'red-cone',
     {
-      width: 3,
-      height: 3
+      diameterBottom: 3,
+      height: 3,
+      diameterTop: 0
     },
     scene
   )
-  redBox.material = redMaterial
-  var blueBox = BABYLON.MeshBuilder.CreateBox(
-    'blue-box',
+  redCone.material = redMaterial
+  var yelloFace = BABYLON.MeshBuilder.CreateSphere(
+    'yellow-face',
     {
-      width: 6,
-      height: 3
+      diameter: 3
     },
     scene
   )
-  blueBox.material = blueMaterial
+  yelloFace.material = yellowMaterial
+
+  var eyeRight = BABYLON.MeshBuilder.CreateSphere(
+    'eye-right',
+    {
+      diameter: 1
+    },
+    scene
+  )
+  eyeRight.material = blackMaterial
+
+  var eyeLeft = BABYLON.MeshBuilder.CreateSphere(
+    'eye-right',
+    {
+      diameter: 1
+    },
+    scene
+  )
+  eyeLeft.material = blackMaterial
+
+  var nose = BABYLON.MeshBuilder.CreateSphere(
+    'nose',
+    {
+      diameter: 1
+    },
+    scene
+  )
+  nose.material = redMaterial
+
+  var body = BABYLON.MeshBuilder.CreateSphere(
+    'body',
+    {
+      diameter: 5
+    },
+    scene
+  )
+  body.material = redMaterial
+
+  var Plane = BABYLON.MeshBuilder.CreatePlane(
+    'plane',
+    {
+      width: 5,
+      height: 5
+    },
+    scene
+  )
+  Plane.material = planeMaterial
   return scene
 }
